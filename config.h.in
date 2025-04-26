@@ -1,0 +1,6 @@
+#cmakedefine HAVE_LIBXML2 1
+#cmakedefine HAVE_LIMITS_H 1
+#cmakedefine HAVE_ICONV 1
+#cmakedefine ENABLE_NLS 1
+#cmakedefine PACKAGE "@PACKAGE@"
+#cmakedefine PACKAGE_NAME "@PACKAGE_NAME@"

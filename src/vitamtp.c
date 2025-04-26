@@ -688,10 +688,12 @@ uint16_t VitaMTP_CancelTask(vita_device_t *device, uint32_t cancel_event_id)
         {
             ret = params->getresp_func(params, &resp);
         }
+#ifdef PTP_USB_SUPPORT
         else
         {
             VitaMTP_USB_Clear(device);
         }
+#endif
     }
     else
     {

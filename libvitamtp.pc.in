@@ -1,12 +1,13 @@
-prefix=@prefix@
-exec_prefix=@exec_prefix@
-libdir=@libdir@
-includedir=@includedir@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}/@CMAKE_INSTALL_LIBEXECDIR@
+libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
 
 Name: libvitamtp
 Description: Media transfer with PlayStation Vita
-Version: @VERSION@
+Version: @PROJECT_VERSION@
 Libs: -L${libdir} -lvitamtp
-Libs.private: @LIBS@
-Requires.private: libusb-1.0 libxml-2.0
-Cflags: -I${includedir} @OSFLAGS@
+Libs.private: @PC_LIBS_PRIVATE@
+Requires: @PC_REQUIRES@
+Requires.private: @PC_REQUIRES_PRIVATE@
+Cflags: -I${includedir} @PC_CFLAGS@

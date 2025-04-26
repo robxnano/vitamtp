@@ -25,13 +25,13 @@ testers is requested.
 
 ## How do I use/test libvitamtp?
 
-Issues Page: https://github.com/codestation/vitamtp/issues
+Issues Page: https://github.com/robxnano/vitamtp/issues
 
 First try to compile it using the directions in INSTALL, if the process fails 
 post the output into the GitHub issues page.
 
 First, note that libVitaMTP is designed with developers in mind. Users should 
-stick to [QCMA](https://github.com/codestation/qcma). Full documentation on the interface will be provided in the 
+stick to [QCMA](https://github.com/robxnano/qcma). Full documentation on the interface will be provided in the 
 future, but for now, read the interface in vitamtp.h and the function headers 
 in vitamtp.c to figure out how functions work and what you can do. OpenCMA has 
 been designed with simplicity in mind so there is no harm in reading the code 
@@ -40,8 +40,8 @@ very similar if you wish to replicate CMA functionality.
 
 ## Build Dependencies
 
-* libtool
-* automake
+* CMake
+* ninja (recommended)
 * gettext
 
 ## Credits?

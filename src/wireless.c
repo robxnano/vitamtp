@@ -1354,7 +1354,8 @@ static int VitaMTP_Get_Wireless_Device(wireless_host_info_t *info, vita_device_t
         return -1;
     }
 
-    int reuseaddr = 1;
+    char reuseaddr = 1;
+
     if (setsockopt(s_sock, SOL_SOCKET, SO_REUSEADDR, &reuseaddr, sizeof(reuseaddr)) == -1)
     {
         VitaMTP_Log(VitaMTP_ERROR, "cannot set SO_REUSEADDR on the socket\n");

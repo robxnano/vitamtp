@@ -13,7 +13,6 @@ aclocal.m4
 autom4te.cache
 config.guess
 config.h
-config.h.in
 config.log
 config.sub
 config.status
@@ -36,3 +35,5 @@ VitaMTP.xcodeproj/xcuserdata
 .libs
 opencma
 Makefile.am.user
+build/
+build-*/

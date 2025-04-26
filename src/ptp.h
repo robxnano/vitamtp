@@ -25,6 +25,8 @@
 
 #include <stdarg.h>
 #include <time.h>
+#include "config.h"
+
 #ifdef HAVE_ICONV
 #include <iconv.h>
 #endif
