@@ -93,7 +93,7 @@ int VitaMTP_Data_Info_From_XML(vita_info_t *vita_info, const char *raw_data, con
     xmlDocPtr doc;
     xmlNodePtr node;
 
-    if ((doc = xmlReadMemory(raw_data, len, "vita_info.xml", NULL, 0)) == NULL)
+    if ((doc = xmlReadMemory(raw_data, len - 1, "vita_info.xml", NULL, 0)) == NULL)
     {
         VitaMTP_Log(VitaMTP_ERROR, "Error parsing XML: %.*s\n", len, raw_data);
         return 1;
@@ -291,7 +291,7 @@ int VitaMTP_Data_Settings_From_XML(settings_info_t **p_settings_info, const char
     xmlNodePtr node;
     xmlNodePtr innerNode;
 
-    if ((doc = xmlReadMemory(raw_data, len, "setting_info.xml", NULL, 0)) == NULL)
+    if ((doc = xmlReadMemory(raw_data, len - 1, "setting_info.xml", NULL, 0)) == NULL)
     {
         VitaMTP_Log(VitaMTP_ERROR, "Error parsing XML: %.*s\n", len, raw_data);
         return 1;
