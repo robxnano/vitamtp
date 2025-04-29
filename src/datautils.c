@@ -72,8 +72,8 @@ char *VitaMTP_Data_Make_Timestamp(time_t time)
     int h = abs(diff / 3600);
     int m = abs((diff / 3600 * 3600 - diff) / 60);
     struct tm *tmlocal = localtime(&tlocal); // get local time
-    char *str = (char *)malloc(sizeof("0000-00-00T00:00:00+00:00")+1);
-    sprintf(str, "%04d-%02d-%02dT%02d:%02d:%02d%s%02d:%02d", tmlocal->tm_year+1900, tmlocal->tm_mon+1, tmlocal->tm_mday,
+    char *str;
+    asprintf(&str, "%04d-%02d-%02dT%02d:%02d:%02d%s%02d:%02d", tmlocal->tm_year+1900, tmlocal->tm_mon+1, tmlocal->tm_mday,
             tmlocal->tm_hour, tmlocal->tm_min, tmlocal->tm_sec, diff<0?"-":"+", h, m);
     return str;
 }
@@ -244,7 +244,8 @@ const initiator_info_t *VitaMTP_Data_Initiator_New(const char *host_name, int pr
 {
     initiator_info_t *init_info = malloc(sizeof(initiator_info_t));
     char *version_str;
-    asprintf(&version_str, "%d.%d", VITAMTP_VERSION_MAJOR, VITAMTP_VERSION_MINOR);
+    if (asprintf(&version_str, "%d.%d", VITAMTP_VERSION_MAJOR, VITAMTP_VERSION_MINOR) < 0) 
+        version_str = strdup("0.0");
     init_info->platformType = strdup("PC");
     init_info->platformSubtype = strdup("Unknown");
     init_info->osVersion = strdup("0.0");

@@ -176,18 +176,23 @@ ptp_ptpip_sendreq(PTPParams *params, PTPContainer *req)
     {
     case 5:
         htod32a(&request[ptpip_cmd_param5],req->Param5);
+        __attribute__((fallthrough));
 
     case 4:
         htod32a(&request[ptpip_cmd_param4],req->Param4);
+        __attribute__((fallthrough));
 
     case 3:
         htod32a(&request[ptpip_cmd_param3],req->Param3);
+        __attribute__((fallthrough));
 
     case 2:
         htod32a(&request[ptpip_cmd_param2],req->Param2);
+        __attribute__((fallthrough));
 
     case 1:
         htod32a(&request[ptpip_cmd_param1],req->Param1);
+        __attribute__((fallthrough));
 
     case 0:
     default:
@@ -593,18 +598,23 @@ ptp_ptpip_getresp(PTPParams *params, PTPContainer *resp)
     {
     case 5:
         resp->Param5 = dtoh32a(&data[ptpip_resp_param5]);
+        __attribute__((fallthrough));
 
     case 4:
         resp->Param4 = dtoh32a(&data[ptpip_resp_param4]);
+        __attribute__((fallthrough));
 
     case 3:
         resp->Param3 = dtoh32a(&data[ptpip_resp_param3]);
+        __attribute__((fallthrough));
 
     case 2:
         resp->Param2 = dtoh32a(&data[ptpip_resp_param2]);
+        __attribute__((fallthrough));
 
     case 1:
         resp->Param1 = dtoh32a(&data[ptpip_resp_param1]);
+        __attribute__((fallthrough));
 
     case 0:
         break;
@@ -809,12 +819,15 @@ ptp_ptpip_event(PTPParams *params, PTPContainer *event, int wait)
     {
     case 3:
         event->Param3 = dtoh32a(&data[ptpip_event_param3]);
+        __attribute__((fallthrough));
 
     case 2:
         event->Param2 = dtoh32a(&data[ptpip_event_param2]);
+        __attribute__((fallthrough));
 
     case 1:
         event->Param1 = dtoh32a(&data[ptpip_event_param1]);
+        __attribute__((fallthrough));
 
     case 0:
         break;
@@ -1397,7 +1410,7 @@ static int VitaMTP_Get_Wireless_Device(wireless_host_info_t *info, vita_device_t
     SOCKET c_sock = INVALID_SOCKET;
     char *data = NULL;
     size_t len;
-    char method[20];
+    char method[21];
     int read;
     int pin = -1;
     int listen = 1;

@@ -60,7 +60,7 @@ extern int VitaMTP_USB_Init(void);
 extern void VitaMTP_USB_Exit(void);
 
 // since we don't have access to private fields
-extern inline PTPParams *VitaMTP_Get_PTP_Params(vita_device_t *device);
+extern PTPParams *VitaMTP_Get_PTP_Params(vita_device_t *device);
 
 /**
  * Called during initialization to get Vita information.
@@ -600,7 +600,6 @@ uint16_t VitaMTP_GetTreatObject(vita_device_t *device, uint32_t event_id, treat_
 uint16_t VitaMTP_SendCopyConfirmationInfoInit(vita_device_t *device, uint32_t event_id,
         copy_confirmation_info_t **p_info)
 {
-    unsigned char *data = NULL;
     uint16_t ret = VitaMTP_GetData(device, event_id, PTP_OC_VITA_SendCopyConfirmationInfoInit, (unsigned char **)p_info, NULL);
     LE32TOH((*p_info)->count);
     uint32_t i;

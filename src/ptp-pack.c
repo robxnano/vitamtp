@@ -137,8 +137,8 @@ ptp_unpack_string(PTPParams *params, unsigned char* data, uint16_t offset, uint8
 	uint16_t string[PTP_MAXSTRLEN+1];
 	/* allow for UTF-8: max of 3 bytes per UCS-2 char, plus final null */
 	char loclstr[PTP_MAXSTRLEN*3+1];
-	size_t nconv, srclen, destlen;
-	char *src, *dest;
+	size_t nconv;
+	char *dest;
 
 	length = dtoh8a(&data[offset]);	/* PTP_MAXSTRLEN == 255, 8 bit len */
 	*len = length;
@@ -151,12 +151,12 @@ ptp_unpack_string(PTPParams *params, unsigned char* data, uint16_t offset, uint8
 	loclstr[0] = '\0';
 
 	/* convert from camera UCS-2 to our locale */
-	src = (char *)string;
-	srclen = length * sizeof(string[0]);
 	dest = loclstr;
-	destlen = sizeof(loclstr)-1;
 	nconv = (size_t)-1;
 #ifdef HAVE_ICONV
+	char *src = (char *)string;
+	size_t srclen = length * sizeof(string[0]);
+	size_t destlen = sizeof(loclstr)-1;
 	if (params->cd_ucs2_to_locale != (iconv_t)-1)
 		nconv = iconv(params->cd_ucs2_to_locale, &src, &srclen, &dest, &destlen);
 #endif
@@ -1998,6 +1998,7 @@ ptp_unpack_CANON_changes (PTPParams *params, unsigned char* data, int datasize, 
 
 				break;
 		}
+        __attribute__((fallthrough));
 		/* one more information record handed to us */
 		case PTP_EC_CANON_EOS_OLCInfoChanged: {
 			uint32_t		len, curoff;
@@ -2401,11 +2402,11 @@ ptp_unpack_canon_directory (
 	for (i=0;i<cnt;i++)
 		if (ISOBJECT(dir+i*0x4c)) nrofobs++;
 	handles->n = nrofobs;
-	handles->Handler = calloc(sizeof(handles->Handler[0]),nrofobs);
+	handles->Handler = calloc(nrofobs, sizeof(handles->Handler[0]));
 	if (!handles->Handler) return PTP_RC_GeneralError;
-	*oinfos = calloc(sizeof((*oinfos)[0]),nrofobs);
+	*oinfos = calloc(nrofobs, sizeof((*oinfos)[0]));
 	if (!*oinfos) return PTP_RC_GeneralError;
-	*flags  = calloc(sizeof((*flags)[0]),nrofobs);
+	*flags  = calloc(nrofobs, sizeof((*flags)[0]));
 	if (!*flags) return PTP_RC_GeneralError;
 
 	/* Migrate data into objects ids, handles into
