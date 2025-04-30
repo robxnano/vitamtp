@@ -26,6 +26,7 @@
 #include <stdarg.h>
 #include <time.h>
 #include "config.h"
+#include "vitamtp.h"
 
 #ifdef HAVE_ICONV
 #include <iconv.h>
@@ -2285,16 +2286,8 @@ typedef uint16_t (* PTPIOGetData)	(PTPParams* params, PTPContainer* ptp,
 typedef uint16_t (* PTPIOCancelReq)	(PTPParams* params, uint32_t transaction_id);
 
 /* debug functions */
-typedef void (* PTPErrorFunc) (void *data, const char *format, va_list args)
-#if (__GNUC__ >= 3)
-	__attribute__((__format__(printf,2,0)))
-#endif
-;
-typedef void (* PTPDebugFunc) (void *data, const char *format, va_list args)
-#if (__GNUC__ >= 3)
-	__attribute__((__format__(printf,2,0)))
-#endif
-;
+typedef void (* PTPErrorFunc) (void *data, const char *format, va_list args) VITAMTP_PRINTF(2, 0);
+typedef void (* PTPDebugFunc) (void *data, const char *format, va_list args) VITAMTP_PRINTF(2, 0);
 
 struct _PTPObject {
 	uint32_t	oid;

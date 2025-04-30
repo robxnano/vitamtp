@@ -132,8 +132,7 @@ int VitaMTP_Get_Device_IP(vita_device_t *device)
  @param size Number of bytes to print
  @param num Number of bytes to print per line
  */
-void VitaMTP_hex_dump(const unsigned char *data, unsigned int size, unsigned int num);
-void VitaMTP_hex_dump(const unsigned char *data, unsigned int size, unsigned int num)
+VITAMTP_API void VitaMTP_hex_dump(const unsigned char *data, unsigned int size, unsigned int num)
 {
     unsigned int i = 0, j = 0, k = 0, l = 0;
 
@@ -244,8 +243,7 @@ int VitaMTP_Read_Event(vita_device_t *device, vita_event_t *event)
  *
  * @param device where to get PTP params from
  */
-PTPParams *VitaMTP_Get_PTP_Params(vita_device_t *device);
-PTPParams *VitaMTP_Get_PTP_Params(vita_device_t *device)
+VITAMTP_API PTPParams *VitaMTP_Get_PTP_Params(vita_device_t *device)
 {
     return device->params;
 }

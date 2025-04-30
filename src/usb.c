@@ -69,7 +69,7 @@ extern pthread_mutex_t g_event_mutex;
 extern read_callback_t read_callback_func;
 extern write_callback_t write_callback_func;
 
-void VitaMTP_hex_dump(const unsigned char *data, unsigned int size, unsigned int num);
+extern void VitaMTP_hex_dump(const unsigned char *data, unsigned int size, unsigned int num);
 
 #define USB_BULK_READ libusb_bulk_transfer
 #define USB_BULK_WRITE libusb_bulk_transfer

@@ -1998,7 +1998,7 @@ ptp_unpack_CANON_changes (PTPParams *params, unsigned char* data, int datasize, 
 
 				break;
 		}
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 		/* one more information record handed to us */
 		case PTP_EC_CANON_EOS_OLCInfoChanged: {
 			uint32_t		len, curoff;

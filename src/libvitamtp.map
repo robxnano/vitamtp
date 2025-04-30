@@ -1,6 +1,0 @@
-{
-  global:
-    VitaMTP_*;
-  local:
-    *;
-};

@@ -651,12 +651,12 @@ int VitaMTP_Data_Free_VitaInfo(vita_info_t *info)
     return 0;
 }
 
-void VitaMTP_Data_Init(void)
+VITAMTP_API void VitaMTP_Data_Init(void)
 {
     xmlInitParser();
 }
 
-void VitaMTP_Data_Cleanup(void)
+VITAMTP_API void VitaMTP_Data_Cleanup(void)
 {
     xmlCleanupParser();
 }

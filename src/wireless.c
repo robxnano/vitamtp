@@ -42,6 +42,12 @@
 #include <winsock2.h>
 #endif
 
+#ifdef _MSC_VER
+#include <basetsd.h>
+#include <stdint.h>
+typedef SSIZE_T ssize_t;
+#endif
+
 // windows doesn't have those functions
 #ifdef _WIN32
 #include "asprintf.h"
@@ -102,7 +108,7 @@ extern pthread_mutex_t g_event_mutex;
 extern read_callback_t read_callback_func;
 extern read_callback_t write_callback_func;
 
-void VitaMTP_hex_dump(const unsigned char *data, unsigned int size, unsigned int num);
+extern void VitaMTP_hex_dump(const unsigned char *data, unsigned int size, unsigned int num);
 
 // the code below is taken from gphoto2
 /* ptpip.c
@@ -176,23 +182,23 @@ ptp_ptpip_sendreq(PTPParams *params, PTPContainer *req)
     {
     case 5:
         htod32a(&request[ptpip_cmd_param5],req->Param5);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 4:
         htod32a(&request[ptpip_cmd_param4],req->Param4);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 3:
         htod32a(&request[ptpip_cmd_param3],req->Param3);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 2:
         htod32a(&request[ptpip_cmd_param2],req->Param2);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 1:
         htod32a(&request[ptpip_cmd_param1],req->Param1);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 0:
     default:
@@ -598,23 +604,23 @@ ptp_ptpip_getresp(PTPParams *params, PTPContainer *resp)
     {
     case 5:
         resp->Param5 = dtoh32a(&data[ptpip_resp_param5]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 4:
         resp->Param4 = dtoh32a(&data[ptpip_resp_param4]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 3:
         resp->Param3 = dtoh32a(&data[ptpip_resp_param3]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 2:
         resp->Param2 = dtoh32a(&data[ptpip_resp_param2]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 1:
         resp->Param1 = dtoh32a(&data[ptpip_resp_param1]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 0:
         break;
@@ -819,15 +825,15 @@ ptp_ptpip_event(PTPParams *params, PTPContainer *event, int wait)
     {
     case 3:
         event->Param3 = dtoh32a(&data[ptpip_event_param3]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 2:
         event->Param2 = dtoh32a(&data[ptpip_event_param2]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 1:
         event->Param1 = dtoh32a(&data[ptpip_event_param1]);
-        __attribute__((fallthrough));
+        VITAMTP_FALLTHROUGH;
 
     case 0:
         break;

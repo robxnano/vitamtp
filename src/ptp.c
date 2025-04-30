@@ -35,7 +35,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+
+#ifndef _MSC_VER
 #include <unistd.h>
+#endif
 
 #ifdef ENABLE_NLS
 #  include <libintl.h>
