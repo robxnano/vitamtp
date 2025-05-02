@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.10...4.0)
-project(VitaMTP LANGUAGES C VERSION 2.5.9)
+project(VitaMTP LANGUAGES C VERSION 2.6.0)
 
 include(CheckLinkerFlag)
 include(CheckSymbolExists)
@@ -35,7 +35,7 @@ if(MSVC)
 else()
     target_compile_options(vitamtp PRIVATE -Wall -Wextra -Wno-unused-parameter -Wno-parentheses)
 endif()
-set_target_properties(vitamtp PROPERTIES VERSION 5.0.1 SOVERSION 5)
+set_target_properties(vitamtp PROPERTIES VERSION 6.0.0 SOVERSION 6)
 
 set(PACKAGE ${PROJECT_NAME})
 set(PACKAGE_NAME ${PROJECT_NAME})

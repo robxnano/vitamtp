@@ -1,3 +1,12 @@
+vitamtp (2.6.0) unstable; urgency=low
+
+  * Replace build system with CMake.
+  * Update udev rules for flatpak compatibility.
+  * Fix XML parsing errors on Linux.
+  * Add MSVC build support.
+
+ -- robxnano <89391914+robxnano@users.noreply.github.com>  Fri, 2 May 2025 00:00:00 -0000
+
 vitamtp (2.5.9) unstable; urgency=low
 
   * fix: prevent buffer overflow by custom version strings.
